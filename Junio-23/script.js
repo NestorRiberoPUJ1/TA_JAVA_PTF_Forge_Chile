@@ -46,3 +46,20 @@ grupos.push("FIRME");
 console.log(grupos);
 grupos.push("FRONTERA");
 console.log(grupos);
+
+
+function promedio(lista_num){
+    let suma=0;
+    for(x in promedio){
+        suma+=promedio[x]
+    }
+    return suma/lista_num.lenght()
+}
+
+function cambiarValores(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+      arr[i] = arr[i + 1];
+    }
+    
+    arr[arr.length - 1] = 0;
+  }
