@@ -48,18 +48,25 @@ grupos.push("FRONTERA");
 console.log(grupos);
 
 
-function promedio(lista_num){
-    let suma=0;
-    for(x in promedio){
-        suma+=promedio[x]
+function promedio(lista_num) {
+    let suma = 0;
+    for (x in promedio) {
+        suma += promedio[x]
     }
-    return suma/lista_num.lenght()
+    return suma / lista_num.lenght()
 }
 
 function cambiarValores(arr) {
     for (let i = 0; i < arr.length - 1; i++) {
-      arr[i] = arr[i + 1];
+        arr[i] = arr[i + 1];
     }
-    
+
     arr[arr.length - 1] = 0;
-  }
+}
+
+
+function cambiarValores(arr) {
+    arr.splice(0, 1);
+    arr.push(0);
+    return arr;
+}
