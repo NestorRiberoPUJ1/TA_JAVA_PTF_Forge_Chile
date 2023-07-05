@@ -1,0 +1,50 @@
+SELECT * FROM concesionario.vendedores;
+
+
+SELECT CONCAT(vd.nombre," ",vd.apellido) AS vendedor, vd.cargo, vd.porcentaje,
+CONCAT(jefes.nombre," ",jefes.apellido) AS jefe
+FROM vendedores vd
+/*UNIR la tabla de vendedores por el id del jefe*/
+JOIN vendedores jefes ON vd.jefe_id=jefes.id
+;
+
+
+SELECT * FROM concesionario.carros;
+
+
+/*SELECCIONAR id modelo año color precio fabricante pais*/
+SELECT carros.id, carros.modelo, year(carros.año) AS año, carros.color, carros.precio,
+fb.nombre AS fabricante,
+paises.nombre AS pais
+FROM carros
+/*Unir la tabla de fabricantes por id de fabricante*/
+JOIN fabricantes fb ON carros.fabricante_id = fb.id
+/*Unir la tabla de paises por id de pais*/
+JOIN paises ON fb.pais_id = paises.id
+;
+
+/*SELECCIONAR id modelo año color precio fabricante pais*/
+SELECT carros.id, carros.modelo, year(carros.año) AS año, carros.color, carros.precio,
+fb.nombre AS fabricante,
+paises.nombre AS pais
+FROM carros
+/*Unir la tabla de fabricantes por id de fabricante*/
+JOIN fabricantes fb ON carros.fabricante_id = fb.id
+/*Unir la tabla de paises por id de pais*/
+JOIN paises ON fb.pais_id = paises.id
+;
+
+
+/*SELECCIONAR id modelo año color precio fabricante pais*/
+SELECT 
+paises.nombre AS pais,
+COUNT(paises.nombre) AS cantidad,
+group_concat( DISTINCT carros.modelo ORDER BY carros.modelo SEPARATOR " / ") AS MODELOS
+FROM carros
+/*Unir la tabla de fabricantes por id de fabricante*/
+JOIN fabricantes fb ON carros.fabricante_id = fb.id
+/*Unir la tabla de paises por id de pais*/
+JOIN paises ON fb.pais_id = paises.id
+/*AGRUPAR*/
+GROUP BY paises.nombre
+;

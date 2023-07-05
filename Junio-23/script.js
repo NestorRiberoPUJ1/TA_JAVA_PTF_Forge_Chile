@@ -61,6 +61,10 @@ function cambiarValores(arr) {
         arr[i] = arr[i + 1];
     }
 
+    for( const x in arr){
+        
+    }
+
     arr[arr.length - 1] = 0;
 }
 
