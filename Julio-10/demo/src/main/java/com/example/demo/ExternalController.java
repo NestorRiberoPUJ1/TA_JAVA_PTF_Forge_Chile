@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 public class ExternalController {
 
   @RequestMapping(value = "", method = RequestMethod.GET)
@@ -28,11 +28,21 @@ public class ExternalController {
     return "Ha buscado:  " + country + " " + city;
   }
 
-  @RequestMapping("/search/{pais}/{ciudad}")
+  @RequestMapping("/search/{pais}/{ciudad}/{barrio}")
   public String lugar(
     @PathVariable("pais") String pais,
-    @PathVariable("ciudad") String ciudad
+    @PathVariable("ciudad") String ciudad,
+    @PathVariable("barrio") String barrio
   ) {
-    return "Pais: " + pais + ", Ciudad: " + ciudad;
+    return "Pais: " + pais + ", Ciudad: " + ciudad + ", Barrio: " + barrio;
+  }
+
+  @RequestMapping("/cursos/{curso}/{modulo}/{unidad}")
+  public String curso(
+    @PathVariable("curso") String curso,
+    @PathVariable("modulo") int modulo,
+    @PathVariable("unidad") int unidad
+  ) {
+    return "Curso: " + curso + ", Ciudad: " + modulo + ", Barrio: " + unidad;
   }
 }
