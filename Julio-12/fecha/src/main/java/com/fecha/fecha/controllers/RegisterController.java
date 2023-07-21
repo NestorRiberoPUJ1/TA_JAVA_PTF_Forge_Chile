@@ -1,5 +1,7 @@
-package com.fecha.fecha;
+package com.fecha.fecha.controllers;
 
+import com.fecha.fecha.models.Usuario;
+import com.fecha.fecha.services.UsuarioService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +13,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class RegisterController {
 
+  private final UsuarioService usuarioService;
+
+  public RegisterController(UsuarioService usuarioService) {
+    this.usuarioService = usuarioService;
+  }
+
   @GetMapping("/formulario")
   public String registro(
-    Model model, 
+    Model model,
     HttpSession session,
-    RedirectAttributes redirectAttributes) {
+    RedirectAttributes redirectAttributes
+  ) {
     /* */
     System.out.println(redirectAttributes.getFlashAttributes());
     return "formulario.jsp";
@@ -40,7 +49,13 @@ public class RegisterController {
         "confirm",
         "Las contraseñas no coinciden"
       );
+      return "redirect:/formulario";
     }
+
+    Usuario newUser = new Usuario(email, password);
+
+    usuarioService.createUsuario(newUser);
+    redirectAttributes.addFlashAttribute("created", "Registro Exitoso");
 
     return "redirect:/formulario";
   }

@@ -1,4 +1,4 @@
-package com.fecha.fecha;
+package com.fecha.fecha.controllers;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

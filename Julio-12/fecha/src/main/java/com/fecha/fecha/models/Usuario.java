@@ -1,4 +1,4 @@
-package com.fecha.fecha;
+package com.fecha.fecha.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -43,6 +43,7 @@ public class Usuario {
   @PrePersist
   protected void onCreate() {
     this.created_at = new Date();
+	this.updated_at = new Date();
   }
 
   @PreUpdate

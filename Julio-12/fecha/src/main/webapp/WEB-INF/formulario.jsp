@@ -29,6 +29,7 @@
                     <button type="submit">Registrar</button>
                 </div>
             </form>
+            <h3><c:out value="${created}"></c:out></h3>
         </body>
 
         </html>
