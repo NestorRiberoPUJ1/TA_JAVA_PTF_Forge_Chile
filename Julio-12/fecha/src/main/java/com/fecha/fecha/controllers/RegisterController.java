@@ -3,6 +3,7 @@ package com.fecha.fecha.controllers;
 import com.fecha.fecha.models.Usuario;
 import com.fecha.fecha.services.UsuarioService;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,13 @@ public class RegisterController {
   ) {
     /* */
     System.out.println(redirectAttributes.getFlashAttributes());
+
+    /* Traer a todos los usuarios */
+    ArrayList<Usuario> usuarios = usuarioService.buscarTodos();
+    System.out.println(usuarios);
+
+    model.addAttribute("usuarios", usuarios);
+
     return "formulario.jsp";
   }
 

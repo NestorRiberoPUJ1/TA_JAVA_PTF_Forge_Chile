@@ -23,13 +23,30 @@
                 <div>
                     <label for="confirmInput">Confirm Password</label>
                     <input type="password" name="confirm_input" id="confirmInput">
-                    <p><c:out value="${confirm}"></c:out></p>
+                    <p>
+                        <c:out value="${confirm}"></c:out>
+                    </p>
                 </div>
                 <div>
                     <button type="submit">Registrar</button>
                 </div>
             </form>
-            <h3><c:out value="${created}"></c:out></h3>
+            <h3>
+                <c:out value="${created}"></c:out>
+            </h3>
+            <hr>
+
+            <c:if test="${usuarios!=[]}">
+                <ul>
+                    <c:forEach var="usuario" items="${usuarios}">
+                        <li>
+                            <a href="/usuario/${usuario.getId()}"><c:out value="${usuario.getEmail()}" /></a>
+                            
+                        </li>
+                    </c:forEach>
+                </ul>
+            </c:if>
+
         </body>
 
         </html>
