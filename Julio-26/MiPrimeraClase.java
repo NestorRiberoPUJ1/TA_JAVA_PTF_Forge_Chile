@@ -1,4 +1,9 @@
+import java.util.ArrayList;
+
 public class MiPrimeraClase {
+
+  private static int numClases = 0;
+  private static ArrayList<MiPrimeraClase> listaClases = new ArrayList<MiPrimeraClase>();
 
   /*Atributos de instancia */
   private String tema;
@@ -10,15 +15,41 @@ public class MiPrimeraClase {
     this.tema = tema;
     this.duracion = duracion;
     this.profesor = profesor;
+
+    numClases++;
+    listaClases.add(this);
   }
 
   public MiPrimeraClase(String tema, String profesor) {
     this.tema = tema;
     this.profesor = profesor;
     this.duracion = 60;
+
+    numClases++;
+    listaClases.add(this);
   }
 
-  public MiPrimeraClase() {}
+  public MiPrimeraClase() {
+    numClases++;
+    listaClases.add(this);
+  }
+
+  /*Getters y Setters de Clase */
+  public static int getNumClases() {
+    return numClases;
+  }
+
+  public static void setNumClases(int numClases) {
+    MiPrimeraClase.numClases = numClases;
+  }
+
+  public static ArrayList<MiPrimeraClase> getListaClases() {
+    return listaClases;
+  }
+
+  public static void setListaClases(ArrayList<MiPrimeraClase> listaClases) {
+    MiPrimeraClase.listaClases = listaClases;
+  }
 
   /*Métodos de instancia */
   public void ensenarClase() {
