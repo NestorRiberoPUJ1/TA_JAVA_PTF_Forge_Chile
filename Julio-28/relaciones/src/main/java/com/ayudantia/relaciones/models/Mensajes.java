@@ -12,11 +12,20 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "mensajes")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Mensajes {
 
   @Id //PK

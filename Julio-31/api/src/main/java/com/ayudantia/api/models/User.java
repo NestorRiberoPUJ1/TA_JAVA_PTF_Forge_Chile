@@ -1,4 +1,4 @@
-package com.ayudantia.relaciones.models;
+package com.ayudantia.api.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,21 +13,12 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.util.Date;
 import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class User {
 
   @Id //PK
@@ -57,39 +48,9 @@ public class User {
     this.updated_at = new Date();
   }
 
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(
-    name = "seguidores",
-    joinColumns = @JoinColumn(name = "seguidor_id"),
-    inverseJoinColumns = @JoinColumn(name = "seguido_id")
-  )
-  private List<User> seguidos;
+  public User() {}
 
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(
-    name = "seguidores",
-    joinColumns = @JoinColumn(name = "seguido_id"),
-    inverseJoinColumns = @JoinColumn(name = "seguidor_id")
-  )
-  private List<User> seguidores;
-
-
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(
-    name = "mensajes",
-    joinColumns = @JoinColumn(name = "receptor_id"),
-    inverseJoinColumns = @JoinColumn(name = "remitende_id")
-  )
-  private List<Mensajes> mensajes_enviados;
-
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(
-    name = "mensajes",
-    joinColumns = @JoinColumn(name = "remitende_id"),
-    inverseJoinColumns = @JoinColumn(name = "receptor_id")
-  )
-  private List<Mensajes> mensajes_recibidos;
-
-
-
+  public User(@Size(min = 2, max = 50) String username) {
+    this.username = username;
+  }
 }
