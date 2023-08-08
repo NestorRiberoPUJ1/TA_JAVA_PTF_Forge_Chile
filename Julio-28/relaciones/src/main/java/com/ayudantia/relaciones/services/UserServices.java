@@ -4,6 +4,7 @@ import com.ayudantia.relaciones.models.Mensajes;
 import com.ayudantia.relaciones.models.User;
 import com.ayudantia.relaciones.repositories.UserRepository;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,8 @@ public class UserServices {
     return userRepository.save(b);
   }
 
-  public ArrayList<User> buscarTodos() {
-    return (ArrayList<User>) userRepository.findAll();
+  public List<User> buscarTodos() {
+    return userRepository.findAll();
   }
 
   public User buscarId(Long id) {
