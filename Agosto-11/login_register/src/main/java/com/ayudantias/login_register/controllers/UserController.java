@@ -26,8 +26,7 @@ public class UserController {
   @GetMapping("/home")
   public String home(Model model, HttpSession session) {
     User current = userService.findUserById(
-      (Long) session.getAttribute("user_id")
-    );
+        (Long) session.getAttribute("user_id"));
 
     model.addAttribute("user", current);
     return "index.jsp";
@@ -45,25 +44,22 @@ public class UserController {
 
   @PostMapping("/register")
   public String createUser(
-    @Valid @ModelAttribute("user") User user,
-    BindingResult result,
-    HttpSession session
-  ) {
+      @Valid @ModelAttribute("user") User user,
+      BindingResult result,
+      HttpSession session) {
     User unique = userService.findByEmail(user.getEmail());
-    //Si existe un usuario con ese email
+    // Si existe un usuario con ese email
     if (unique != null) {
       ObjectError error = new ObjectError(
-        "email",
-        "Email ya se encuentra en uso"
-      );
+          "email",
+          "Email ya se encuentra en uso");
       result.addError(error);
     }
-    //Contraseñas coinciden?
+    // Contraseñas coinciden?
     if (!user.getPassword().contentEquals(user.getPasswordConfirmation())) {
       ObjectError error = new ObjectError(
-        "passwordConfirmation",
-        "Las contraseñas no coinciden"
-      );
+          "passwordConfirmation",
+          "Las contraseñas no coinciden");
       result.addError(error);
     }
 
@@ -83,11 +79,10 @@ public class UserController {
 
   @PostMapping("/login")
   public String loginUser(
-    @RequestParam("email") String email,
-    @RequestParam("password") String password,
-    Model model,
-    HttpSession session
-  ) {
+      @RequestParam("email") String email,
+      @RequestParam("password") String password,
+      Model model,
+      HttpSession session) {
     if (!userService.authenticateUser(email, password)) {
       model.addAttribute("error", "Credenciales inválidas");
       return "login.jsp";
@@ -97,8 +92,8 @@ public class UserController {
 
     session.setAttribute("user_id", authUser.getId());
 
-    //Si el usuario está autenticado, guarde su id de usuario en el objeto Session
-    //sino agregue un mensaje de error y retorne a la página de inicio de sesión.
+    // Si el usuario está autenticado, guarde su id de usuario en el objeto Session
+    // sino agregue un mensaje de error y retorne a la página de inicio de sesión.
 
     return "redirect:/home";
   }
